@@ -17,7 +17,7 @@ class CreateSubCategoriesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
-            $table->bigIncrements('description');
+            $table->longText('description');
             $table->string('image');
             $table->foreign('category_id')
                 ->references('id')->on('categories');
