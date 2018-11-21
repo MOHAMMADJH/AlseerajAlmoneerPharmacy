@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 /*
- * route::prefix('test')->groub(function (){
+  route::prefix('test')->groub(function (){
     Route::get('/test1',function (){
         return "مفيش إنترنت" ;
     Route::get('/test2',function (){
