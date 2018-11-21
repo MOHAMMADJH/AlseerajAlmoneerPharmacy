@@ -16,10 +16,17 @@ class CreateBillProductsTable extends Migration
         Schema::create('bill_products', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->integer('quantity');
+
+
+            $table->integer('product_id');
             $table->foreign('product_id')
                 ->references('id')->on('products');
-            $table->foreign('product_id')
-                ->references('id')->on('products');
+
+
+            $table->integer('bill_id');
+            $table->foreign('bill_id')
+                ->references('id')->on('bills');
 
         });
     }
