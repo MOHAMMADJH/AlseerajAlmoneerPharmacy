@@ -18,5 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('categories','CategoryController@index');
-Route::post('categories/create','CategoryController@create');
+Route::prefix('categories')->group(function () {
+    Route::get('', 'CategoryController@index');
+    Route::post('show', 'CategoryController@show');
+    Route::post('create', 'CategoryController@create');
+    Route::put('update', 'CategoryController@update');
+    Route::delete('delete', 'CategoryController@delete');
+});
