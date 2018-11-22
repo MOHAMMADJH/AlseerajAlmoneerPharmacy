@@ -16,5 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('categories','CategoryController@index');
-Route::post('categories/create','CategoryController@create');
+Route::prefix('categories')->group(function () {
+    Route::get('', 'CategoriesController@index');
+    Route::post('show', 'CategoriesController@show');
+    Route::post('create', 'CategoriesController@create');
+    Route::put('update', 'CategoriesController@update');
+    Route::delete('delete', 'CategoriesController@delete');
+});
