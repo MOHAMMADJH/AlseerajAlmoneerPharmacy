@@ -22,7 +22,7 @@ class CreateBillsTable extends Migration
             $table->float('paid');
             $table->float('remain');
             $table->string('currency');
-            $table->unsignedInteger('company_id');
+            $table->integer('company_id');
             $table->foreign('company_id')
                 ->references('id')->on('companies');
 

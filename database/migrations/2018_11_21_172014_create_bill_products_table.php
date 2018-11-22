@@ -19,12 +19,12 @@ class CreateBillProductsTable extends Migration
             $table->integer('quantity');
 
 
-            $table->unsignedInteger('product_id');
+            $table->integer('product_id');
             $table->foreign('product_id')
                 ->references('id')->on('products');
 
 
-            $table->unsignedInteger('bill_id');
+            $table->integer('bill_id');
             $table->foreign('bill_id')
                 ->references('id')->on('bills');
 
