@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\SubCategory;
+use App\sub_category;
 use Illuminate\Http\Request;
 
 
@@ -10,11 +9,11 @@ class SubCategoryController extends Controller
 {
     public function index()
     {
-        $subCategories = SubCategory::with(['category', 'products'])->get();
+        $subCategories = sub_category::with(['category', 'products'])->get();
 //        $categories = SubCategory::all(['name']);
         return response()->json([
             'status' => true,
-            'message' => 'SSuccess',
+            'message' => 'Success',
             'request' => 'Web Training course',
             'categories' => $subCategories
         ]);
@@ -26,10 +25,10 @@ class SubCategoryController extends Controller
             'id' => 'required|exists:sub_categories,id|integer',
         ]);
 
-        $subCategory = SubCategory::find($request->get('id'));
+        $subCategory = sub_category::find($request->get('id'));
         return response()->json([
             'status' => true,
-            'subCategory' => v
+            'subCategory' => $subCategory
         ]);
     }
 
@@ -40,7 +39,7 @@ class SubCategoryController extends Controller
             'description' => 'required|string|min:5|max:30',
             'category_id' => 'required|exists:categories,id|integer'
         ]);
-        $subCategory = new SubCategory();
+        $subCategory = new sub_category();
         $subCategory->name = $request->get('name');
         $subCategory->description = $request->get('description');
         $subCategory->image = "";
@@ -69,7 +68,7 @@ class SubCategoryController extends Controller
             'category_id' => 'required|exists:categories,id|integer'
         ]);
 
-        $subCategory = SubCategory::find($request->get('id'));
+        $subCategory = sub_category::find($request->get('id'));
         $subCategory->name = $request->get('name');
         $subCategory->description = $request->get('description');
         $subCategory->image = "";
@@ -89,13 +88,13 @@ class SubCategoryController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:sub_categories,id|integer',
         ]);
 
-        $isDeleted = SubCategory::destroy($request->get('id'));
+        $isDeleted = sub_category::destroy($request->get('id'));
         if ($isDeleted) {
             return response()->json([
                 'status' => true,
