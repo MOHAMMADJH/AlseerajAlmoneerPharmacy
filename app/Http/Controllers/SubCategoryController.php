@@ -14,7 +14,7 @@ class SubCategoryController extends Controller
 //        $categories = SubCategory::all(['name']);
         return response()->json([
             'status' => true,
-            'message' => 'Success',
+            'message' => 'SSuccess',
             'request' => 'Web Training course',
             'categories' => $subCategories
         ]);
