@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $category->name = $request->get('name');
         $category->description = $request->get('description');
         $category->image = "";
-       
+        
         $isSaved = $category->save();
         if ($isSaved) {
             return response()->json([
@@ -66,14 +66,13 @@ class CategoryController extends Controller
             'id' => 'required|exists:categories,id|integer',
             'name' => 'required|string|min:3|max:20',
             'description' => 'required|string|min:5|max:30',
-            'code' => 'required|integer'
+            
         ]);
 
         $category = Category::find($request->get('id'));
         $category->name = $request->get('name');
         $category->description = $request->get('description');
         $category->image = "";
-        $category->code = $request->get('code');
         $isSaved = $category->save();
         if ($isSaved) {
             return response()->json([
@@ -89,7 +88,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function delete(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:categories,id|integer',

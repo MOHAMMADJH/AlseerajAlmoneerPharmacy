@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\sub_category;
+use App\SubCategory;
 use Illuminate\Http\Request;
+
 
 class SubCategoryController extends Controller
 {
@@ -18,6 +19,20 @@ class SubCategoryController extends Controller
             'categories' => $subCategories
         ]);
     }
+
+    public function show(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:sub_categories,id|integer',
+        ]);
+
+        $subCategory = SubCategory::find($request->get('id'));
+        return response()->json([
+            'status' => true,
+            'subCategory' => v
+        ]);
+    }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -44,30 +59,6 @@ class SubCategoryController extends Controller
             ]);
         }
     }
-    public function show(Request $request)
-    {
-        $request->validate([
-            'id' => 'required|exists:sub_categories,id|integer',
-        ]);
-
-        $subCategory = SubCategory::find($request->get('id'));
-        return response()->json([
-            'status' => true,
-            'subCategory' => $subCategory
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
 
     public function update(Request $request)
     {
@@ -98,7 +89,7 @@ class SubCategoryController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function delete(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:sub_categories,id|integer',
@@ -118,4 +109,3 @@ class SubCategoryController extends Controller
         }
     }
 }
-
