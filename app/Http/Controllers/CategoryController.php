@@ -38,13 +38,13 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|min:3|max:20',
             'description' => 'required|string|min:5|max:30',
-            'code' => 'required|integer'
+           
         ]);
         $category = new Category();
         $category->name = $request->get('name');
         $category->description = $request->get('description');
         $category->image = "";
-        $category->code = $request->get('code');
+       
         $isSaved = $category->save();
         if ($isSaved) {
             return response()->json([
@@ -89,7 +89,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:categories,id|integer',

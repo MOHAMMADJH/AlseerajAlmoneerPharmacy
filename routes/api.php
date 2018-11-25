@@ -23,5 +23,12 @@ Route::prefix('categories')->group(function () {
     Route::post('show', 'CategoryController@show');
     Route::post('create', 'CategoryController@create');
     Route::put('update', 'CategoryController@update');
-    Route::delete('delete', 'CategoryController@delete');
+    Route::delete('destroy', 'CategoryController@destroy');
+});
+Route::prefix('SubCategories')->group(function () {
+    Route::get('', 'SubCategoryController@index');
+    Route::post('show', 'SubCategoryController@show');
+    Route::post('create', 'SubCategoryController@create');
+    Route::put('update', 'SubCategoryController@update');
+    Route::delete('destroy', 'SubCategoryController@destroy');
 });
